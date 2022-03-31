@@ -14,7 +14,8 @@ def index():  # put application's code here
         data = getData(url)
         pprint.pprint(data)
         return redirect('/' + data['path'])
-    return render_template("index.html")
+    else:
+        return render_template("index.html")
 
 
 @app.route('/<string:artist>', methods=["GET"])
