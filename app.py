@@ -3,6 +3,7 @@ from myLib import *
 import pprint
 
 app = Flask(__name__)
+app.secret_key = "dgbsjbgjasi"
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -41,7 +42,6 @@ def track(artist, track):
 @app.route('/api/<string:artist>', methods=["GET"])
 def artistApi(artist):
     platforms = getPlatformObject(artist)
-    pprint.pp(platforms)
     data = getData(platforms[0]["url"])
     image = data["image"]
     name = data["name"]
