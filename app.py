@@ -38,7 +38,7 @@ def track(artist, track):
     name = data["name"]
     return render_template("page.html", platforms=platforms, social=social, image=image, name=name)
 
-
+'''
 @app.route('/api/<string:artist>', methods=["GET"])
 def artistApi(artist):
     platforms = getPlatformObject(artist)
@@ -58,7 +58,7 @@ def trackApi(artist, track):
     image = data["image"]
     name = data["name"]
     obj = {"name": name, "image": image, "platforms": platforms, "social": social}
-    return obj
+    return obj'''
 
 
 if __name__ == '__main__':
