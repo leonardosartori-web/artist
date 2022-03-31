@@ -37,5 +37,27 @@ def track(artist, track):
     return render_template("page.html", platforms=platforms, social=social, image=image, name=name)
 
 
+@app.route('/api/<string:artist>', methods=["GET", "POST"])
+def artistApi(artist):
+    platforms = getPlatformObject(artist)
+    data = getData(platforms[0]["url"])
+    pprint.pp(data)
+    image = data["image"]
+    name = data["name"]
+    obj = {"name": name, "image": image, "platforms": platforms}
+    return obj
+
+
+@app.route('/api/<string:artist>/<string:track>', methods=["GET", "POST"])
+def trackApi(artist, track):
+    platforms = getPlatformObject(artist + '/' + track)
+    data = getData(platforms[0]["url"])
+    pprint.pp(data)
+    social = getSocial(data)
+    image = data["image"]
+    name = data["name"]
+    obj = {"name": name, "image": image, "platforms": platforms, "social": social}
+    return obj
+
 if __name__ == '__main__':
     app.run()
