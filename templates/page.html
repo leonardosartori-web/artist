@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ name }}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="shortcut icon" href="{{ image }}">
+</head>
+<body>
+    <div class="registration-form">
+        <form>
+            <div class="form-icon">
+                <img src="{{ image }}" alt="Cover" width="100%" class="rounded-circle">
+            </div>
+            <h3 class="text-center text-light">{{ name }}</h3>
+            {% for x in platforms %}
+            <div class="form-group">
+                 <button type="button" class="btn btn-block create-account" onclick="window.open('{{ x.url }}')">{{ x.name }}</button>
+            </div>
+            {% endfor %}
+        </form>
+        <div class="social-media">
+            <div class="social-icons">
+                {% for s in social %}
+                <a href="{{ s.url }}"><i class="icon-social-{{ s.name }}" title="{{ s.name }}"></i></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+</body>
+</html>
