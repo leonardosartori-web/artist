@@ -1,4 +1,3 @@
-import flask.logging
 import requests
 from bs4 import BeautifulSoup
 from requests.structures import CaseInsensitiveDict
