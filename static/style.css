@@ -102,3 +102,33 @@ body{
         line-height: 70px;
     }
 }
+/*
+.div3d {
+    transform:
+        rotate3d(.5,-.866,0,15deg)
+        rotate(1deg);
+      box-shadow:
+        2em 4em 6em -2em rgba(0,0,0,.5),
+        1em 2em 3.5em -2.5em rgba(0,0,0,.5);
+      transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+      border-radius: .5em;
+}
+
+.div3d :hover {
+    transform:
+      rotate3d(0,0,0,0deg)
+      rotate(0deg);
+}*/
+
+.div3d {
+  transform: perspective(1500px) rotateY(15deg);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  transition: transform 1s ease 0s;
+}
+
+.div3d:hover {
+    transform: perspective(3000px) rotateY(5deg);
+}

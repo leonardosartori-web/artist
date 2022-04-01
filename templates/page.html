@@ -13,22 +13,24 @@
 </head>
 <body>
     <div class="registration-form">
-        <form>
-            <div class="form-icon">
-                <img src="{{ image }}" alt="Cover" width="100%" class="rounded-circle">
-            </div>
-            <h3 class="text-center text-light">{{ name }}</h3>
-            {% for x in platforms %}
-            <div class="form-group">
-                 <button type="button" class="btn btn-block create-account" onclick="window.open('{{ x.url }}')">{{ x.name }}</button>
-            </div>
-            {% endfor %}
-        </form>
-        <div class="social-media">
-            <div class="social-icons">
-                {% for s in social %}
-                <a href="{{ s.url }}"><i class="icon-social-{{ s.name }}" title="{{ s.name }}"></i></a>
+        <div class="div3d">
+            <form>
+                <div class="form-icon">
+                    <img src="{{ image }}" alt="Cover" width="100%" class="rounded-circle">
+                </div>
+                <h3 class="text-center text-light">{{ name }}</h3>
+                {% for x in platforms %}
+                <div class="form-group">
+                     <button type="button" class="btn btn-block create-account" onclick="window.open('{{ x.url }}')">{{ x.name }}</button>
+                </div>
                 {% endfor %}
+            </form>
+            <div class="social-media">
+                <div class="social-icons">
+                    {% for s in social %}
+                    <a href="{{ s.url }}"><i class="icon-social-{{ s.name }}" title="{{ s.name }}"></i></a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

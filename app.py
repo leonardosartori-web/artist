@@ -19,8 +19,6 @@ def index():
 
 @app.route('/search/<string:artist>', methods=('GET', 'POST'))
 def showArtist(artist):
-    print("Ciao")
-    print(artist)
     platforms = getPlatformObject(artist)
     pprint.pp(platforms)
     data = getData(platforms[0]["url"])
