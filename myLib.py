@@ -1,5 +1,6 @@
+import flask.logging
 import requests
-from bs4 import *
+from bs4 import BeautifulSoup
 from requests.structures import CaseInsensitiveDict
 import pprint
 import validators
@@ -16,9 +17,10 @@ def getData(link):
 
 def getLinksTrack(url):
     xhtml = requests.get(url)
-    soup = BeautifulSoup(str(xhtml.text), "html.parser")
+    soup = BeautifulSoup(xhtml.text, "html.parser")
+    data = soup.findAll('a')
     links = []
-    for link in soup.findAll('a'):
+    for link in data:
         tmp = link.get('href')
         if validators.url(tmp):
             links.append(tmp)
