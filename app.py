@@ -60,3 +60,10 @@ def trackApi(artist, track):
     obj = {"name": name, "image": image, "platforms": platforms, "social": social}
     return obj
 
+
+@app.route('/apiurl', methods=('GET',))
+def urlApi():
+    args = request.args
+    url = args.get("url")
+    data = getData(url)
+    return redirect('/api/' + data['path'])
