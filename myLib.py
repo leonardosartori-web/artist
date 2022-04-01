@@ -16,7 +16,7 @@ def getData(link):
 
 def getLinksTrack(url):
     xhtml = requests.get(url)
-    soup = BeautifulSoup(xhtml.text, "html.parser")
+    soup = BeautifulSoup(str(xhtml.text), "html.parser")
     links = []
     for link in soup.findAll('a'):
         tmp = link.get('href')
