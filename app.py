@@ -3,22 +3,21 @@ from myLib import *
 import pprint
 
 app = Flask(__name__)
-app.secret_key = "dgbsjbgjasi"
 
 
 @app.route('/', methods=["GET", "POST"])
-def index():  # put application's code here
+def index():
     if request.method == "POST":
         url = request.form['url']
         print(url)
         data = getData(url)
         pprint.pprint(data)
-        return redirect('/' + data['path'])
+        return redirect('/search/' + data['path'])
     else:
         return render_template("index.html")
 
 
-@app.route('/<string:artist>', methods=["GET"])
+@app.route('/search/<string:artist>', methods=["GET"])
 def showArtist(artist):
     print("Ciao")
     print(artist)
@@ -30,7 +29,7 @@ def showArtist(artist):
     return render_template("page.html", platforms=platforms, image=image, name=name)
 
 
-@app.route('/<string:artist>/<string:track>', methods=["GET"])
+@app.route('/search/<string:artist>/<string:track>', methods=["GET"])
 def track(artist, track):
     platforms = getPlatformObject(artist + '/' + track)
     data = getData(platforms[0]["url"])
@@ -39,7 +38,7 @@ def track(artist, track):
     name = data["name"]
     return render_template("page.html", platforms=platforms, social=social, image=image, name=name)
 
-'''
+
 @app.route('/api/<string:artist>', methods=["GET"])
 def artistApi(artist):
     platforms = getPlatformObject(artist)
@@ -59,7 +58,7 @@ def trackApi(artist, track):
     image = data["image"]
     name = data["name"]
     obj = {"name": name, "image": image, "platforms": platforms, "social": social}
-    return obj'''
+    return obj
 
 
 if __name__ == '__main__':
