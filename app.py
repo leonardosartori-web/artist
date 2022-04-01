@@ -5,7 +5,7 @@ import pprint
 app = Flask(__name__)
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=('GET', 'POST'))
 def index():
     if request.method == "POST":
         url = request.form['url']
@@ -17,7 +17,7 @@ def index():
         return render_template("index.html")
 
 
-@app.route('/search/<string:artist>', methods=["GET", "POST"])
+@app.route('/search/<string:artist>', methods=('GET', 'POST'))
 def showArtist(artist):
     print("Ciao")
     print(artist)
@@ -29,7 +29,7 @@ def showArtist(artist):
     return render_template("page.html", platforms=platforms, image=image, name=name)
 
 
-@app.route('/search/<string:artist>/<string:track>', methods=["GET", "POST"])
+@app.route('/search/<string:artist>/<string:track>', methods=('GET', 'POST'))
 def track(artist, track):
     platforms = getPlatformObject(artist + '/' + track)
     data = getData(platforms[0]["url"])
@@ -39,7 +39,7 @@ def track(artist, track):
     return render_template("page.html", platforms=platforms, social=social, image=image, name=name)
 
 
-@app.route('/api/<string:artist>', methods=["GET", "POST"])
+@app.route('/api/<string:artist>', methods=('GET', 'POST'))
 def artistApi(artist):
     platforms = getPlatformObject(artist)
     data = getData(platforms[0]["url"])
@@ -50,7 +50,7 @@ def artistApi(artist):
     return obj
 
 
-@app.route('/api/<string:artist>/<string:track>', methods=["GET", "POST"])
+@app.route('/api/<string:artist>/<string:track>', methods=('GET', 'POST'))
 def trackApi(artist, track):
     platforms = getPlatformObject(artist + '/' + track)
     data = getData(platforms[0]["url"])
@@ -60,6 +60,3 @@ def trackApi(artist, track):
     obj = {"name": name, "image": image, "platforms": platforms, "social": social}
     return obj
 
-
-if __name__ == '__main__':
-    app.run()
