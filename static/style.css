@@ -29,8 +29,8 @@ body{
     border-radius: 50%;
     font-size: 40px;
     color: white;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: auto;
     margin-bottom: 50px;
     line-height: 100px;
@@ -96,10 +96,10 @@ body{
     }
 
     .registration-form .form-icon{
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
         font-size: 30px;
-        line-height: 70px;
+        line-height: 100px;
     }
 }
 /*
@@ -130,5 +130,5 @@ body{
 }
 
 .div3d:hover {
-    transform: perspective(3000px) rotateY(5deg);
+    transform: perspective(3000px) rotateY(0deg);
 }
