@@ -22,7 +22,8 @@ def getLinksTrack(url):
     for link in data:
         tmp = link.get('href')
         if validators.url(tmp):
-            links.append(tmp)
+            #links.append(tmp)
+            links.append(str(tmp).replace("songwhip", ""))
     links = links[:-4]
     return links
 
@@ -51,6 +52,7 @@ def getSocial(data):
         if x in keys:
             tmp = {"url": res[x][0]["link"], "name": x}
             links.append(tmp)
+            #links.append(str(tmp).replace("songwhip", ""))
     return links
 
 

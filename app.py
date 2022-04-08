@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from myLib import *
 import pprint
+from spotify import *
 
 app = Flask(__name__)
 
@@ -65,3 +66,10 @@ def urlApi():
     url = args.get("url")
     data = getData(url)
     return redirect('/api/' + data['path'])
+
+@app.route('/<string:types>/api', methods=('GET', 'POST'))
+def searchTrack(types):
+    args = request.args
+    query = args.get("query")
+    data = searchQuery(query, types)
+    return data
