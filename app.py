@@ -29,7 +29,7 @@ def showArtist(artist):
 
 
 @app.route('/search/<string:artist>/<string:track>', methods=('GET', 'POST'))
-def track(artist, track):
+def showTrack(artist, track):
     platforms = getPlatformObject(artist + '/' + track)
     data = getData(platforms[0]["url"])
     social = getSocial(data)
@@ -67,8 +67,9 @@ def urlApi():
     data = getData(url)
     return redirect('/api/' + data['path'])
 
-@app.route('/api/search/<string:types>', methods=('GET', 'POST'))
-def searchTrack(types):
+
+@app.route('/apiSearch/<string:types>', methods=('GET'))
+def search(types):
     args = request.args
     query = args.get("query")
     data = searchQuery(query, types)
