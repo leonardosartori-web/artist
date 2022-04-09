@@ -74,3 +74,11 @@ def search(types):
     query = args.get("query")
     data = searchQuery(query, types)
     return redirect('/apiurl?url=' + data)
+
+
+@app.route('/apiPath', methods=('GET',))
+def getPath():
+    args = request.args
+    url = args.get("url")
+    data = getData(url)
+    return data['path']
