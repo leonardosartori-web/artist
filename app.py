@@ -68,9 +68,9 @@ def urlApi():
     return redirect('/api/' + data['path'])
 
 
-@app.route('/apiSearch/<string:types>', methods=('GET'))
+@app.route('/apiSearch/<string:types>', methods=('GET',))
 def search(types):
     args = request.args
     query = args.get("query")
     data = searchQuery(query, types)
-    return data
+    return redirect('/apiurl?url=' + data)
