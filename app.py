@@ -67,7 +67,7 @@ def urlApi():
     data = getData(url)
     return redirect('/api/' + data['path'])
 
-@app.route('/<string:types>/api', methods=('GET', 'POST'))
+@app.route('/api/search/<string:types>', methods=('GET', 'POST'))
 def searchTrack(types):
     args = request.args
     query = args.get("query")
