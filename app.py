@@ -21,11 +21,12 @@ def index():
 @app.route('/search/<string:artist>', methods=('GET', 'POST'))
 def showArtist(artist):
     platforms = getPlatformObject(artist)
+    about = getAbout(artist)
     pprint.pp(platforms)
     data = getData(platforms[0]["url"])
     image = data["image"]
     name = data["name"]
-    return render_template("page.html", platforms=platforms, image=image, name=name)
+    return render_template("page.html", platforms=platforms, image=image, name=name, about=about)
 
 
 @app.route('/search/<string:artist>/<string:track>', methods=('GET', 'POST'))
@@ -41,10 +42,11 @@ def showTrack(artist, track):
 @app.route('/api/<string:artist>', methods=('GET', 'POST'))
 def artistApi(artist):
     platforms = getPlatformObject(artist)
+    about = getAbout(artist)
     data = getData(platforms[0]["url"])
     image = data["image"]
     name = data["name"]
-    obj = {"name": name, "image": image, "platforms": platforms}
+    obj = {"name": name, "image": image, "platforms": platforms, "about": about}
     pprint.pp(obj)
     return obj
 

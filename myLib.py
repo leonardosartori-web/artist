@@ -22,10 +22,15 @@ def getLinksTrack(url):
     for link in data:
         tmp = link.get('href')
         if validators.url(tmp):
-            #links.append(tmp)
             links.append(str(tmp).replace("songwhip", ""))
     links = links[:-4]
     return links
+
+def getAbout(query):
+    xhtml = requests.get("https://songwhip.com/" + query)
+    soup = BeautifulSoup(xhtml.text, "html.parser")
+    about = soup.find('div', attrs={'data-testid': 'artistDescription'}).find("p").text
+    return about
 
 def refData(data):
     for x in data:
@@ -52,7 +57,6 @@ def getSocial(data):
         if x in keys:
             tmp = {"url": res[x][0]["link"], "name": x}
             links.append(tmp)
-            #links.append(str(tmp).replace("songwhip", ""))
     return links
 
 

@@ -31,6 +31,12 @@
                     <a href="{{ s.url }}"><i class="icon-social-{{ s.name }}" title="{{ s.name }}"></i></a>
                     {% endfor %}
                 </div>
+                {% if about %}
+                    <div style="color: white; text-align: justify;" class="m-2">
+                        <h4>About {{ name }}</h4>
+                        <p>{{ about }}</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
