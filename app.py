@@ -23,16 +23,20 @@ def showArtist(artist):
     platforms = getPlatformObject(artist)
     about = getAbout(artist)
     pprint.pp(platforms)
+    albums = getArtistAlbums(getArtistIdByUrl(platforms[0]["url"]))
+    albumData = getData(albums[0]["url"])
+    social = getSocial(albumData)
     data = getData(platforms[0]["url"])
     image = data["image"]
     name = data["name"]
-    return render_template("page.html", platforms=platforms, image=image, name=name, about=about)
+    return render_template("page.html", platforms=platforms, image=image, name=name, about=about, social=social)
 
 
 @app.route('/search/<string:artist>/<string:track>', methods=('GET', 'POST'))
 def showTrack(artist, track):
     platforms = getPlatformObject(artist + '/' + track)
     data = getData(platforms[0]["url"])
+    pprint.pp(data)
     social = getSocial(data)
     image = data["image"]
     name = data["name"]
@@ -46,7 +50,10 @@ def artistApi(artist):
     data = getData(platforms[0]["url"])
     image = data["image"]
     name = data["name"]
-    obj = {"name": name, "image": image, "platforms": platforms, "about": about}
+    albums = getArtistAlbums(getArtistIdByUrl(platforms[0]["url"]))
+    albumData = getData(albums[0]["url"])
+    social = getSocial(albumData)
+    obj = {"name": name, "image": image, "platforms": platforms, "about": about, "social": social}
     pprint.pp(obj)
     return obj
 
